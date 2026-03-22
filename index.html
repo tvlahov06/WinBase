@@ -905,9 +905,16 @@ function save() {
   localStorage.setItem('winbase_users', JSON.stringify(users));
   // Pokaži sync indikator
   const el = document.getElementById('unsaved-indicator');
-  if (el) { el.style.display = 'flex'; setTimeout(() => { el.style.display = 'none'; }, 4000); }
-  // Auto-push na GitHub ako je uključeno
-  ghAutoSyncIfEnabled();
+  if (el) { el.style.display = 'flex'; setTimeout(() => { el.style.display = 'none'; }, 5000); }
+  // Auto-push na GitHub
+  const s = ghLoadSettings();
+  if (s.token) {
+    ghAutoSyncIfEnabled().then(() => {
+      if (el) el.style.display = 'none';
+    }).catch(err => {
+      showToast('Sync greška: ' + err.message, true);
+    });
+  }
 }
 
 // ============ FORM ============
@@ -1571,7 +1578,7 @@ async function ghPush(silent = false) {
     document.getElementById('gh-last-push-time').textContent = formatDate(settings.lastPush) + ' · ' + shortSha;
 
     ghUpdateStatusUI('pushed', `Commit ${shortSha} · ${users.length} korisnika`);
-    if (!silent) showToast(`✓ Push uspješan! Commit ${shortSha}`);
+    showToast(`☁ Spremljeno na GitHub · ${shortSha}`);
 
     // Refresh commits
     setTimeout(ghFetchCommits, 800);
@@ -1633,8 +1640,14 @@ function toggleTokenVis() {
 // Called after every save() to auto-push if enabled
 async function ghAutoSyncIfEnabled() {
   const s = ghLoadSettings();
-  if (s.autoSync && s.token && s.owner && s.repo) {
-    await ghPush(true); // silent = no toast on success (save already shows one)
+  // Push ako postoji token i repo — bez obzira na autoSync flag
+  if (s.token && s.owner && s.repo) {
+    await ghPush(true);
+  } else if (s.token && s.repo && !s.owner) {
+    // owner nije dohvaćen — pokušaj dohvatiti pa push
+    await ghConnectAndSave();
+    const updated = ghLoadSettings();
+    if (updated.owner) await ghPush(true);
   }
 }
 
