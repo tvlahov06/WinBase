@@ -1212,107 +1212,120 @@ function exportPDF(id) {
       </div>`;
   }
 
-  const printCSS = `
-    @page {
-      size: 10cm 15cm;
-      margin: 0;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      width: 10cm;
-      height: 15cm;
-      font-family: Helvetica, Arial, sans-serif;
-      background: white;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-      overflow: hidden;
-    }
-    .page {
-      width: 10cm;
-      height: 15cm;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-    .hdr {
-      background: #4A90D9;
-      padding: 10px 14px;
-      min-height: 2.4cm;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-shrink: 0;
-    }
-    .hdr-l { color: white; }
-    .hdr-name { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
-    .hdr-lap { font-size: 10px; opacity: 0.9; }
-    .hdr-pc { color: white; font-size: 12px; font-weight: 700; align-self: flex-start; padding-top: 4px; white-space: nowrap; }
-    .body { padding: 10px 14px; flex: 1; }
-    .ms-row { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
-    .ms-lbl { font-size: 12px; color: #555; }
-    .sec { margin-bottom: 10px; }
-    .sec2 { margin-top: 12px; }
-    .ftr {
-      flex-shrink: 0;
-      text-align: center;
-      padding: 4px 14px;
-      font-size: 8px;
-      color: #AAA;
-      border-top: 0.5px solid #EEE;
-      width: 100%;
-    }`;
-
-  // Naziv fajla: WinBase_Ime_Prezime
   const safeName = (u.name || 'korisnik')
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // makni dijakritike
-    .replace(/\s+/g, '_')
-    .replace(/[^a-zA-Z0-9_]/g, '');
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
   const fname = 'WinBase_' + safeName + '.pdf';
 
-  const printHTML = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-    <title>${fname}</title>
-    <style>${printCSS}</style>
-    </head><body>
-    <div class="page">
-      <div class="hdr">
-        <div class="hdr-l">
-          <div class="hdr-name">${u.name || ''}</div>
-          ${u.laptop ? `<div class="hdr-lap">${u.laptop}</div>` : ''}
-        </div>
-        <div class="hdr-pc">1 PC</div>
-      </div>
-      <div class="body">
-        <div class="ms-row">${msLogoSVG}<span class="ms-lbl">Microsoft</span></div>
-        ${hasWin    ? `<div class="sec">${sectionHTML(winLogoSVG, winTitle, winEd, u.winKey)}</div>` : ''}
-        ${hasOffice ? `<div class="sec sec2">${sectionHTML(offLogoSVG, offTitle, offEd, u.officeKey)}</div>` : ''}
-      </div>
-      <div class="ftr">WinBase</div>
-    </div>
-  </body></html>`;
+  // CSS koji STVARNO forsira 10x15cm
+  // Trik: koristimo mm jedinice u CSS-u + meta viewport za točan prikaz
+  const printHTML = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${fname}</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  // ── Skriveni iframe — nema popupa ──
-  let iframe = document.getElementById('__pdf_frame__');
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.id = '__pdf_frame__';
-    iframe.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:10cm;height:15cm;border:none;visibility:hidden;';
-    document.body.appendChild(iframe);
+  @page {
+    size: 100mm 150mm;
+    margin: 0mm;
   }
 
-  const iDoc = iframe.contentDocument || iframe.contentWindow.document;
-  iDoc.open();
-  iDoc.write(printHTML);
-  iDoc.close();
+  html {
+    width: 100mm;
+    height: 150mm;
+  }
 
-  setTimeout(() => {
-    try {
-      iframe.contentWindow.focus();
-      iframe.contentWindow.print();
-      showToast('Odaberi "Spremi kao PDF" → naziv: ' + fname);
-    } catch(e) {
-      showToast('Greška: ' + e.message, true);
+  body {
+    width: 100mm;
+    height: 150mm;
+    font-family: Helvetica, Arial, sans-serif;
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .hdr {
+    background: #4A90D9;
+    padding: 10px 14px;
+    height: 24mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .hdr-l { color: white; }
+  .hdr-name { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .hdr-lap { font-size: 10px; opacity: 0.9; }
+  .hdr-pc { color: white; font-size: 12px; font-weight: 700; align-self: flex-start; padding-top: 4px; white-space: nowrap; }
+
+  .body { padding: 10px 14px; flex: 1; }
+  .ms-row { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .ms-lbl { font-size: 12px; color: #555; }
+  .sec { margin-bottom: 10px; }
+  .sec2 { margin-top: 12px; }
+
+  .ftr {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 3px 14px;
+    font-size: 8px;
+    color: #AAA;
+    border-top: 0.5px solid #EEE;
+  }
+
+  /* Kritično: onemogući browser da doda header/footer pri ispisu */
+  @media print {
+    html, body {
+      width: 100mm;
+      height: 150mm;
     }
-  }, 500);
+  }
+</style>
+</head>
+<body onload="setTimeout(function(){window.print();},300)">
+  <div class="hdr">
+    <div class="hdr-l">
+      <div class="hdr-name">${u.name || ''}</div>
+      ${u.laptop ? `<div class="hdr-lap">${u.laptop}</div>` : ''}
+    </div>
+    <div class="hdr-pc">1 PC</div>
+  </div>
+  <div class="body">
+    <div class="ms-row">${msLogoSVG}<span class="ms-lbl">Microsoft</span></div>
+    ${hasWin    ? `<div class="sec">${sectionHTML(winLogoSVG, winTitle, winEd, u.winKey)}</div>` : ''}
+    ${hasOffice ? `<div class="sec sec2">${sectionHTML(offLogoSVG, offTitle, offEd, u.officeKey)}</div>` : ''}
+  </div>
+  <div class="ftr">WinBase</div>
+</body>
+</html>`;
+
+  // Blob URL — otvori kao zasebna stranica, ne iframe
+  // Ovo omogućava browser da primijeni @page size ispravno
+  const blob = new Blob([printHTML], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+
+  // Otvori u novom tabu
+  const printTab = window.open(url, '_blank');
+
+  if (!printTab) {
+    // Fallback: kreiraj link i simuliraj klik
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  // Oslobodi URL nakon što se stranica učita
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+
+  showToast('U print dijalogu: postavi veličinu na 10×15cm ili "Custom"');
 }
 
 
