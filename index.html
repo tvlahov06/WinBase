@@ -723,11 +723,13 @@ tr:hover td { background: rgba(255,255,255,0.02); }
       </div>
     </div>
 
-    <!-- Commit log -->
-    <div class="io-card" id="gh-commits-card" style="display:none;">
-      <div class="io-title">📋 Git historija</div>
-      <div id="gh-commits-list" style="margin-top:10px;"></div>
-      <button class="btn btn-secondary btn-sm" onclick="ghFetchCommits()" style="margin-top:12px;" id="gh-commits-btn">Osvježi historiju</button>
+    <!-- Manual save — prikazuje se samo kad je auto-sync isključen -->
+    <div class="io-card" id="gh-manual-save-card" style="display:none;border-color:rgba(0,212,255,0.25);background:rgba(0,212,255,0.04);">
+      <div class="io-title" style="color:var(--accent);margin-bottom:6px;">☁ Ručno spremi na GitHub</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;">Auto-sync je isključen. Klikni za ručni push trenutnih podataka na GitHub.</div>
+      <button class="btn btn-primary" onclick="ghPush(false)" id="gh-manual-push-btn" style="width:100%;justify-content:center;">
+        ☁ Spremi na GitHub
+      </button>
     </div>
   </div>
 
@@ -1508,8 +1510,6 @@ async function ghConnectAndSave() {
 
     ghUpdateStatusUI('connected', `${owner}/${s.repo} · ${repoData.private ? '🔒 Private' : '🌐 Public'}`);
     showToast(`✓ Spojeno! ${owner}/${s.repo}`);
-    document.getElementById('gh-commits-card').style.display = 'block';
-    ghFetchCommits();
   } catch(e) {
     ghUpdateStatusUI('error', 'Mrežna greška: ' + e.message);
     showToast('Greška veze: ' + e.message, true);
@@ -1524,7 +1524,6 @@ function ghClearSettings() {
   document.getElementById('gh-token').value = '';
   document.getElementById('gh-repo').value = '';
   document.getElementById('gh-autosync').checked = false;
-  document.getElementById('gh-commits-card').style.display = 'none';
   ghUpdateStatusUI('disconnected');
   showToast('GitHub postavke obrisane.');
 }
@@ -1533,7 +1532,11 @@ function ghFillForm() {
   const s = ghLoadSettings();
   if (s.token) document.getElementById('gh-token').value = s.token;
   if (s.repo)  document.getElementById('gh-repo').value = s.repo;
-  document.getElementById('gh-autosync').checked = s.autoSync !== false;
+  const autoSync = s.autoSync !== false;
+  document.getElementById('gh-autosync').checked = autoSync;
+  // Prikaži ručni save ako je auto-sync isključen
+  const manualCard = document.getElementById('gh-manual-save-card');
+  if (manualCard) manualCard.style.display = autoSync ? 'none' : 'block';
   if (s.lastPush) {
     document.getElementById('gh-last-push').style.display = 'block';
     document.getElementById('gh-last-push-time').textContent = formatDate(s.lastPush) + ' (' + timeAgo(s.lastPush) + ')';
@@ -1648,7 +1651,6 @@ async function ghPush(silent = false) {
     showToast(`☁ Spremljeno na GitHub · ${shortSha}`);
 
     // Refresh commits
-    setTimeout(ghFetchCommits, 800);
     return true;
 
   } catch(e) {
@@ -1660,41 +1662,14 @@ async function ghPush(silent = false) {
   }
 }
 
-async function ghFetchCommits() {
-  const s = ghLoadSettings();
-  if (!s.token || !s.owner || !s.repo) return;
-  const btn = document.getElementById('gh-commits-btn');
-  if (btn) { btn.textContent = '⏳ Učitavanje...'; btn.disabled = true; }
-  try {
-    const r = await fetch(
-      `https://api.github.com/repos/${s.owner}/${s.repo}/commits?path=winbase-korisnici.json&per_page=10`,
-      { headers: { 'Authorization': 'token ' + s.token, 'Accept': 'application/vnd.github.v3+json' } }
-    );
-    if (!r.ok) return;
-    const commits = await r.json();
-    const el = document.getElementById('gh-commits-list');
-    if (!commits.length) { el.innerHTML = '<div style="color:var(--muted);font-size:13px;">Nema commitova još.</div>'; return; }
-    el.innerHTML = commits.map(c => `
-      <div class="gh-commit">
-        <span class="gh-commit-sha">${c.sha.substring(0,7)}</span>
-        <div>
-          <div class="gh-commit-msg">${escHtml(c.commit.message)}</div>
-          <div class="gh-commit-meta">${formatDate(c.commit.author.date)} · ${escHtml(c.commit.author.name)}</div>
-        </div>
-      </div>`).join('');
-    document.getElementById('gh-commits-card').style.display = 'block';
-  } catch(e) {
-    console.warn('Commits fetch failed:', e);
-  } finally {
-    if (btn) { btn.textContent = 'Osvježi historiju'; btn.disabled = false; }
-  }
-}
-
 function ghToggleAutoSync(enabled) {
   const s = ghLoadSettings();
   s.autoSync = enabled;
   localStorage.setItem(GH_KEY, JSON.stringify(s));
   showToast(enabled ? '⚡ Auto-sync uključen' : 'Auto-sync isključen');
+  // Prikaži/sakrij ručni save gumb
+  const manualCard = document.getElementById('gh-manual-save-card');
+  if (manualCard) manualCard.style.display = enabled ? 'none' : 'block';
 }
 
 function toggleTokenVis() {
