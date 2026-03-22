@@ -381,17 +381,40 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 .pwa-btn { background: var(--accent); color: #000; border: none; border-radius: 8px; padding: 8px 14px; font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; }
 .pwa-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; padding: 4px; margin-left: 4px; }
 
+/* ====== MOBILE HEADER BAR ====== */
+.mobile-header {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0;
+  height: calc(env(safe-area-inset-top, 0px) + 56px);
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 200;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.mobile-logo {
+  display: flex; align-items: center; gap: 10px;
+  cursor: pointer; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-logo-title {
+  font-family: var(--mono); font-size: 18px;
+  font-weight: 700; color: var(--accent);
+}
+
 /* ====== HAMBURGER / DRAWER (mobile) ====== */
 .hamburger-btn {
   display: none;
-  position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: 16px;
-  z-index: 300;
   width: 44px; height: 44px;
-  background: var(--surface); border: 1px solid var(--border);
+  background: var(--surface2); border: 1px solid var(--border);
   border-radius: 10px; cursor: pointer;
   align-items: center; justify-content: center;
   flex-direction: column; gap: 5px;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 .hamburger-btn:active { background: var(--surface2); }
 .ham-line {
@@ -466,8 +489,9 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   .sidebar { display: none; }
-  .main { margin-left: 0; padding: 16px 14px; padding-top: calc(env(safe-area-inset-top, 0px) + 68px); padding-bottom: 20px; }
+  .mobile-header { display: flex; }
   .hamburger-btn { display: flex; }
+  .main { margin-left: 0; padding: 16px 14px; padding-top: calc(env(safe-area-inset-top, 0px) + 72px); padding-bottom: 20px; }
   .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .stat-card { padding: 14px; }
   .stat-value { font-size: 26px; }
@@ -554,12 +578,24 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   </div>
 </nav>
 
-<!-- HAMBURGER BUTTON (mobile) -->
-<button class="hamburger-btn" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Izbornik">
-  <span class="ham-line"></span>
-  <span class="ham-line"></span>
-  <span class="ham-line"></span>
-</button>
+<!-- MOBILE HEADER BAR -->
+<header class="mobile-header">
+  <div class="mobile-logo" onclick="showPage('dashboard')">
+    <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+      <rect width="28" height="28" rx="7" fill="#0d0f14"/>
+      <rect x="3" y="3" width="10" height="10" rx="2.5" fill="#00d4ff"/>
+      <rect x="15" y="3" width="10" height="10" rx="2.5" fill="#00d4ff" opacity=".65"/>
+      <rect x="3" y="15" width="10" height="10" rx="2.5" fill="#00d4ff" opacity=".65"/>
+      <rect x="15" y="15" width="10" height="10" rx="2.5" fill="#00d4ff"/>
+    </svg>
+    <span class="mobile-logo-title">WinBase</span>
+  </div>
+  <button class="hamburger-btn" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Izbornik">
+    <span class="ham-line"></span>
+    <span class="ham-line"></span>
+    <span class="ham-line"></span>
+  </button>
+</header>
 
 <!-- DRAWER OVERLAY -->
 <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
