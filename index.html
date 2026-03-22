@@ -1338,7 +1338,16 @@ function renderTable(q) {
           ${winBadge(u.winVer)}
           ${officeBadge(u.officeVer)}
         </div>
-        ${u.winKey ? `<div style="margin-bottom:6px;"><span class="key-display" style="max-width:100%;" onclick="copyKey('${u.winKey}')">${maskKey(u.winKey)} — kopiraj</span></div>` : ''}
+        ${u.winKey ? `
+        <div style="margin-bottom:8px;">
+          <div style="font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Windows ključ</div>
+          <span class="key-display" style="max-width:100%;width:100%;display:block;padding:8px 10px;font-size:13px;" onclick="copyKey('${u.winKey}')">${u.winKey}</span>
+        </div>` : ''}
+        ${u.officeKey ? `
+        <div style="margin-bottom:8px;">
+          <div style="font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Office ključ</div>
+          <span class="key-display" style="max-width:100%;width:100%;display:block;padding:8px 10px;font-size:13px;" onclick="copyKey('${u.officeKey}')">${u.officeKey}</span>
+        </div>` : ''}
         <div class="ucm-actions">
           <button class="btn btn-secondary btn-sm" onclick="viewUser('${u.id}')" style="flex:1;justify-content:center;">👁 Detalji</button>
           <button class="btn btn-secondary btn-sm" onclick="exportPDF('${u.id}')" style="font-size:13px;letter-spacing:0.3px;">↓ PDF</button>
