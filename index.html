@@ -89,20 +89,20 @@ body {
   border-bottom: 1px solid var(--border);
   margin-bottom: 16px;
 }
-.logo-title { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--accent); }
-.logo-sub { font-size: 11px; color: var(--muted); margin-top: 2px; font-family: var(--mono); }
+.logo-title { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--accent); }
+.logo-sub { font-size: 13px; color: var(--muted); margin-top: 2px; font-family: var(--mono); }
 
 .nav-item {
   display: flex; align-items: center; gap: 12px;
   padding: 12px 24px; cursor: pointer;
   transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-  font-size: 14px; font-weight: 400;
+  font-size: 16px; font-weight: 400;
   color: var(--muted); border-left: 3px solid transparent;
   transform-origin: left center;
 }
 .nav-item:hover { background: var(--surface2); color: var(--text); transform: scale(1.04) translateX(3px); }
 .nav-item.active { background: rgba(0,212,255,0.08); color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
-.nav-icon { font-size: 16px; width: 20px; text-align: center; }
+.nav-icon { font-size: 18px; width: 20px; text-align: center; }
 
 .sidebar-bottom {
   margin-top: auto;
@@ -129,7 +129,7 @@ body {
   display: flex; align-items: center;
   justify-content: space-between; margin-bottom: 28px;
 }
-.page-title { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+.page-title { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
 .page-title span { color: var(--accent); }
 
 /* ====== STAT CARDS ====== */
@@ -149,28 +149,28 @@ body {
 .stat-card.purple::before { background: var(--accent2); }
 .stat-card.green::before { background: var(--success); }
 .stat-card.yellow::before { background: var(--warning); }
-.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: var(--mono); }
+.stat-label { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: var(--mono); }
 .stat-value { font-size: 30px; font-weight: 700; margin-top: 6px; font-family: var(--mono); }
-.stat-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 26px; opacity: 0.12; }
+.stat-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 28px; opacity: 0.12; }
 
 /* ====== LAST ENTRY ====== */
 .last-entry-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; padding: 20px; margin-bottom: 24px;
 }
-.last-entry-title { font-size: 11px; font-family: var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+.last-entry-title { font-size: 13px; font-family: var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
 .last-entry-content { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .last-entry-avatar {
   width: 44px; height: 44px; border-radius: 10px;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 16px; color: white; flex-shrink: 0;
+  font-weight: 700; font-size: 18px; color: white; flex-shrink: 0;
 }
-.last-entry-info .name { font-size: 15px; font-weight: 600; }
-.last-entry-info .meta { font-size: 11px; color: var(--muted); margin-top: 3px; font-family: var(--mono); }
+.last-entry-info .name { font-size: 17px; font-weight: 600; }
+.last-entry-info .meta { font-size: 13px; color: var(--muted); margin-top: 3px; font-family: var(--mono); }
 .last-entry-time { margin-left: auto; text-align: right; }
-.last-entry-time .time { font-size: 12px; font-family: var(--mono); color: var(--accent); }
-.last-entry-time .ago { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.last-entry-time .time { font-size: 14px; font-family: var(--mono); color: var(--accent); }
+.last-entry-time .ago { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
 /* ====== RECENT LIST ====== */
 .recent-item { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--border); }
@@ -179,11 +179,11 @@ body {
   width: 34px; height: 34px; border-radius: 8px;
   background: linear-gradient(135deg, var(--accent2), var(--accent));
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+  font-size: 14px; font-weight: 700; color: white; flex-shrink: 0;
 }
-.recent-name { font-size: 13px; font-weight: 600; }
-.recent-meta { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 2px; }
-.recent-time { margin-left: auto; font-size: 11px; color: var(--muted); font-family: var(--mono); white-space: nowrap; }
+.recent-name { font-size: 15px; font-weight: 600; }
+.recent-meta { font-size: 13px; color: var(--muted); font-family: var(--mono); margin-top: 2px; }
+.recent-time { margin-left: auto; font-size: 13px; color: var(--muted); font-family: var(--mono); white-space: nowrap; }
 
 /* ====== FORM ====== */
 .form-card {
@@ -193,13 +193,13 @@ body {
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .form-full { grid-column: 1 / -1; }
 .form-group { display: flex; flex-direction: column; gap: 6px; }
-.form-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--mono); }
+.form-label { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--mono); }
 .form-label .req { color: var(--accent); }
 
 .form-input, .form-select, .form-textarea {
   background: var(--bg); border: 1px solid var(--border);
   border-radius: 8px; padding: 11px 14px;
-  color: var(--text); font-family: var(--sans); font-size: 15px;
+  color: var(--text); font-family: var(--sans); font-size: 17px;
   transition: border-color 0.2s, box-shadow 0.2s; outline: none;
   -webkit-appearance: none; appearance: none;
   min-height: 44px; /* touch target */
@@ -212,13 +212,13 @@ body {
 
 .key-combo { display: flex; gap: 8px; flex-wrap: wrap; }
 .key-combo .form-select { flex: 1 1 160px; }
-.key-combo .form-input { flex: 2 1 180px; font-family: var(--mono); font-size: 13px; }
+.key-combo .form-input { flex: 2 1 180px; font-family: var(--mono); font-size: 15px; }
 
 /* ====== BUTTONS ====== */
 .btn {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 11px 20px; border-radius: 8px;
-  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-size: 16px; font-weight: 600; cursor: pointer;
   border: none; transition: all 0.18s; font-family: var(--sans);
   min-height: 44px; white-space: nowrap;
 }
@@ -229,7 +229,7 @@ body {
 .btn-secondary:hover { background: var(--border); }
 .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
 .btn-danger:hover { background: var(--danger); color: #fff; }
-.btn-sm { padding: 8px 12px; font-size: 12px; min-height: 36px; }
+.btn-sm { padding: 8px 12px; font-size: 14px; min-height: 36px; }
 
 .form-actions {
   display: flex; gap: 10px; margin-top: 22px;
@@ -240,26 +240,26 @@ body {
 /* ====== TABLE ====== */
 .table-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
 .table-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
-.table-title { font-size: 14px; font-weight: 600; }
+.table-title { font-size: 16px; font-weight: 600; }
 .table-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .search-input {
   background: var(--bg); border: 1px solid var(--border);
   border-radius: 8px; padding: 9px 14px; color: var(--text);
-  font-size: 14px; font-family: var(--sans); outline: none;
+  font-size: 16px; font-family: var(--sans); outline: none;
   width: 200px; transition: border-color 0.2s; min-height: 40px;
 }
 .search-input:focus { border-color: var(--accent); }
 
 table { width: 100%; border-collapse: collapse; }
 thead { background: var(--bg); }
-th { padding: 11px 14px; text-align: left; font-size: 11px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; white-space: nowrap; }
-td { padding: 13px 14px; font-size: 13px; border-top: 1px solid var(--border); vertical-align: middle; }
+th { padding: 11px 14px; text-align: left; font-size: 13px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+td { padding: 13px 14px; font-size: 15px; border-top: 1px solid var(--border); vertical-align: middle; }
 tr:hover td { background: rgba(255,255,255,0.02); }
 
 .badge {
   display: inline-flex; align-items: center;
   padding: 3px 8px; border-radius: 4px;
-  font-size: 11px; font-family: var(--mono); font-weight: 600; white-space: nowrap;
+  font-size: 13px; font-family: var(--mono); font-weight: 600; white-space: nowrap;
 }
 .badge-win11 { background: rgba(124,58,237,0.1); color: #a78bfa; border: 1px solid rgba(124,58,237,0.2); }
 .badge-win10 { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); }
@@ -270,7 +270,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 .badge-none { background: rgba(100,116,139,0.1); color: var(--muted); border: 1px solid rgba(100,116,139,0.2); }
 
 .key-display {
-  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  font-family: var(--mono); font-size: 13px; color: var(--muted);
   background: var(--bg); padding: 3px 7px; border-radius: 4px;
   border: 1px solid var(--border); cursor: pointer;
   transition: all 0.18s; max-width: 160px;
@@ -278,18 +278,18 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 }
 .key-display:hover { border-color: var(--accent); color: var(--accent); }
 
-.no-data { text-align: center; padding: 48px; color: var(--muted); font-size: 13px; }
+.no-data { text-align: center; padding: 48px; color: var(--muted); font-size: 15px; }
 
 .pagination {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 20px; border-top: 1px solid var(--border);
-  font-size: 12px; color: var(--muted); font-family: var(--mono); flex-wrap: wrap; gap: 8px;
+  font-size: 14px; color: var(--muted); font-family: var(--mono); flex-wrap: wrap; gap: 8px;
 }
 .page-btns { display: flex; gap: 5px; }
 .page-btn {
   width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
   border-radius: 6px; cursor: pointer; border: 1px solid var(--border);
-  background: var(--surface2); font-size: 12px; transition: all 0.18s; color: var(--text);
+  background: var(--surface2); font-size: 14px; transition: all 0.18s; color: var(--text);
 }
 .page-btn:hover, .page-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
 
@@ -304,14 +304,14 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   width: 36px; height: 36px; border-radius: 8px;
   background: linear-gradient(135deg, var(--accent2), var(--accent));
   display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; color: white; flex-shrink: 0;
+  font-size: 15px; font-weight: 700; color: white; flex-shrink: 0;
 }
-.ucm-name { font-size: 14px; font-weight: 700; }
-.ucm-contact { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.ucm-name { font-size: 16px; font-weight: 700; }
+.ucm-contact { font-size: 14px; color: var(--muted); font-family: var(--mono); }
 .ucm-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
 .ucm-actions { display: flex; gap: 8px; }
-.ucm-laptop { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
-.ucm-date { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 6px; }
+.ucm-laptop { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+.ucm-date { font-size: 13px; color: var(--muted); font-family: var(--mono); margin-top: 6px; }
 
 /* ====== MODAL ====== */
 .modal-overlay {
@@ -328,16 +328,16 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 }
 @keyframes slideUp { from { transform: translateY(60px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .modal-handle { width: 36px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 18px; }
-.modal-title { font-size: 17px; font-weight: 700; margin-bottom: 18px; }
+.modal-title { font-size: 19px; font-weight: 700; margin-bottom: 18px; }
 .modal-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
 
 /* ====== IO CARDS ====== */
 .io-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 14px; }
-.io-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-.io-desc { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
+.io-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.io-desc { font-size: 15px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
 .drop-zone {
   border: 2px dashed var(--border); border-radius: 8px; padding: 28px;
-  text-align: center; color: var(--muted); font-size: 13px;
+  text-align: center; color: var(--muted); font-size: 15px;
   cursor: pointer; transition: all 0.2s;
 }
 .drop-zone:hover { border-color: var(--accent); color: var(--accent); }
@@ -347,7 +347,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
   background: var(--surface2); border: 1px solid var(--border);
   border-left: 4px solid var(--success); border-radius: 10px;
-  padding: 13px 20px; font-size: 14px; z-index: 999;
+  padding: 13px 20px; font-size: 16px; z-index: 999;
   opacity: 0; transition: opacity 0.25s, transform 0.25s;
   white-space: nowrap; max-width: calc(100vw - 32px);
   text-overflow: ellipsis; overflow: hidden;
@@ -374,12 +374,12 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   animation: slideUp 0.3s ease;
 }
 .pwa-banner-inner { display: flex; align-items: center; gap: 12px; }
-.pwa-icon { font-size: 28px; flex-shrink: 0; }
+.pwa-icon { font-size: 30px; flex-shrink: 0; }
 .pwa-text { flex: 1; }
-.pwa-text strong { display: block; font-size: 14px; color: var(--text); }
-.pwa-text span { font-size: 12px; color: var(--muted); }
-.pwa-btn { background: var(--accent); color: #000; border: none; border-radius: 8px; padding: 8px 14px; font-weight: 700; font-size: 13px; cursor: pointer; white-space: nowrap; }
-.pwa-close { background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; padding: 4px; margin-left: 4px; }
+.pwa-text strong { display: block; font-size: 16px; color: var(--text); }
+.pwa-text span { font-size: 14px; color: var(--muted); }
+.pwa-btn { background: var(--accent); color: #000; border: none; border-radius: 8px; padding: 8px 14px; font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; }
+.pwa-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; padding: 4px; margin-left: 4px; }
 
 /* ====== BOTTOM NAV (mobile) ====== */
 .bottom-nav {
@@ -396,12 +396,12 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   align-items: center; justify-content: center; gap: 3px;
   cursor: pointer; transition: all 0.2s; border-radius: 10px;
   padding: 6px 4px; margin: 6px 2px;
-  color: var(--muted); font-size: 10px; font-weight: 600;
+  color: var(--muted); font-size: 11px; font-weight: 600;
   letter-spacing: 0.3px;
 }
 .bnav-item:active { transform: scale(0.92); }
 .bnav-item.active { color: var(--accent); background: rgba(0,212,255,0.08); }
-.bnav-icon { font-size: 20px; }
+.bnav-icon { font-size: 22px; }
 .bnav-save {
   background: var(--accent); color: #000 !important;
   border-radius: 12px; margin: 8px 4px;
@@ -415,12 +415,12 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   .bottom-nav { display: flex; }
   .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .stat-card { padding: 14px; }
-  .stat-value { font-size: 24px; }
+  .stat-value { font-size: 26px; }
   .form-grid { grid-template-columns: 1fr; }
   .form-card { padding: 16px; }
   .key-combo { flex-direction: column; }
   .key-combo .form-select, .key-combo .form-input { flex: none; width: 100%; }
-  .page-title { font-size: 20px; }
+  .page-title { font-size: 22px; }
   .page-header { margin-bottom: 18px; }
   /* Hide desktop table, show cards */
   .table-desktop { display: none; }
@@ -446,13 +446,13 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 .toggle-switch input:checked + .toggle-slider::before { transform:translateX(22px); background:#000; }
 .gh-commit { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); }
 .gh-commit:last-child { border-bottom:none; }
-.gh-commit-sha { font-family:var(--mono); font-size:11px; color:var(--accent); background:rgba(0,212,255,0.08); padding:2px 6px; border-radius:4px; flex-shrink:0; white-space:nowrap; }
-.gh-commit-msg { font-size:13px; font-weight:500; }
-.gh-commit-meta { font-size:11px; color:var(--muted); font-family:var(--mono); margin-top:2px; }
+.gh-commit-sha { font-family:var(--mono); font-size:15px; color:var(--accent); background:rgba(0,212,255,0.08); padding:2px 6px; border-radius:4px; flex-shrink:0; white-space:nowrap; }
+.gh-commit-msg { font-size:17px; font-weight:500; }
+.gh-commit-meta { font-size:15px; color:var(--muted); font-family:var(--mono); margin-top:2px; }
 
 @media (max-width: 380px) {
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .stat-label { font-size: 10px; }
+  .stat-label { font-size: 11px; }
 }
 
 /* Safe area for iPhone X+ */
@@ -487,14 +487,14 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   <div class="sidebar-bottom">
     <div id="unsaved-indicator" style="display:none;">
       <span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 1.5s infinite;flex-shrink:0;"></span>
-      <span style="font-size:11px;color:var(--accent);font-family:var(--mono);line-height:1.3;">Sinkronizacija...</span>
+      <span style="font-size:13px;color:var(--accent);font-family:var(--mono);line-height:1.3;">Sinkronizacija...</span>
     </div>
     <!-- Theme toggle -->
     <button onclick="toggleTheme()" id="theme-btn-sidebar"
-      style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;font-family:var(--sans);font-size:13px;color:var(--text);margin-top:10px;"
+      style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;font-family:var(--sans);font-size:15px;color:var(--text);margin-top:10px;"
       onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
       <span id="theme-label-sidebar" style="font-weight:500;">🌙 Tamni način</span>
-      <span id="theme-icon-sidebar" style="font-size:18px;">☀</span>
+      <span id="theme-icon-sidebar" style="font-size:20px;">☀</span>
     </button>
   </div>
 </nav>
@@ -539,7 +539,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     </div>
     <div class="last-entry-card">
       <div class="last-entry-title">▸ Zadnji unos</div>
-      <div id="last-entry-content" class="last-entry-content"><span style="color:var(--muted);font-size:13px;">Nema unesenih korisnika</span></div>
+      <div id="last-entry-content" class="last-entry-content"><span style="color:var(--muted);font-size:15px;">Nema unesenih korisnika</span></div>
     </div>
     <div class="table-card">
       <div class="table-header">
@@ -664,14 +664,14 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     <!-- Status card -->
     <div class="io-card" id="gh-status-card" style="border-color:rgba(100,116,139,0.3);">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-        <div id="gh-status-icon" style="font-size:28px;">⬡</div>
+        <div id="gh-status-icon" style="font-size:30px;">⬡</div>
         <div>
-          <div id="gh-status-title" style="font-size:14px;font-weight:600;">Nije spojeno</div>
-          <div id="gh-status-sub" style="font-size:12px;color:var(--muted);font-family:var(--mono);margin-top:2px;">Unesi GitHub podatke ispod</div>
+          <div id="gh-status-title" style="font-size:16px;font-weight:600;">Nije spojeno</div>
+          <div id="gh-status-sub" style="font-size:14px;color:var(--muted);font-family:var(--mono);margin-top:2px;">Unesi GitHub podatke ispod</div>
         </div>
         <button class="btn btn-secondary btn-sm" onclick="ghTestConnection()" id="gh-test-btn" style="margin-left:auto;">Testiraj</button>
       </div>
-      <div id="gh-last-push" style="font-size:11px;color:var(--muted);font-family:var(--mono);display:none;">
+      <div id="gh-last-push" style="font-size:13px;color:var(--muted);font-family:var(--mono);display:none;">
         Zadnji push: <span id="gh-last-push-time">—</span>
       </div>
     </div>
@@ -685,9 +685,9 @@ tr:hover td { background: rgba(255,255,255,0.02); }
           <label class="form-label">Personal Access Token</label>
           <div style="position:relative;">
             <input type="password" class="form-input" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false" style="padding-right:44px;">
-            <button onclick="toggleTokenVis()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px;" id="gh-token-eye">👁</button>
+            <button onclick="toggleTokenVis()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;" id="gh-token-eye">👁</button>
           </div>
-          <div style="font-size:11px;color:var(--muted);font-family:var(--mono);line-height:1.6;">
+          <div style="font-size:13px;color:var(--muted);font-family:var(--mono);line-height:1.6;">
             📌 Kako generirati token:<br>
             1. GitHub → Settings → Developer settings<br>
             2. Personal access tokens → Tokens (classic)<br>
@@ -698,7 +698,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
         <div class="form-group">
           <label class="form-label">Naziv repozitorija</label>
           <input type="text" class="form-input" id="gh-repo" placeholder="WinBase" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-          <div style="font-size:11px;color:var(--muted);font-family:var(--mono);">Samo naziv repoa — username se dohvaća automatski iz tokena</div>
+          <div style="font-size:13px;color:var(--muted);font-family:var(--mono);">Samo naziv repoa — username se dohvaća automatski iz tokena</div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn btn-primary" onclick="ghSaveSettings()">💾 Spremi i poveži</button>
@@ -714,7 +714,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
         <div>
           <div class="io-title" style="margin-bottom:4px;">⚡ Auto-sync</div>
-          <div style="font-size:12px;color:var(--muted);line-height:1.5;">Automatski push na GitHub svaki put kad dodaš ili urediš korisnika.</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.5;">Automatski push na GitHub svaki put kad dodaš ili urediš korisnika.</div>
         </div>
         <label class="toggle-switch">
           <input type="checkbox" id="gh-autosync" onchange="ghToggleAutoSync(this.checked)">
@@ -726,7 +726,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     <!-- Manual save — prikazuje se samo kad je auto-sync isključen -->
     <div class="io-card" id="gh-manual-save-card" style="display:none;border-color:rgba(0,212,255,0.25);background:rgba(0,212,255,0.04);">
       <div class="io-title" style="color:var(--accent);margin-bottom:6px;">☁ Ručno spremi na GitHub</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;">Auto-sync je isključen. Klikni za ručni push trenutnih podataka na GitHub.</div>
+      <div style="font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.5;">Auto-sync je isključen. Klikni za ručni push trenutnih podataka na GitHub.</div>
       <button class="btn btn-primary" onclick="ghPush(false)" id="gh-manual-push-btn" style="width:100%;justify-content:center;">
         ☁ Spremi na GitHub
       </button>
@@ -749,9 +749,9 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 <!-- CONFIRM DIALOG -->
 <div class="modal-overlay" id="confirm-overlay">
   <div class="modal" onclick="event.stopPropagation()" style="max-width:340px;text-align:center;">
-    <div style="font-size:32px;margin-bottom:12px;">🗑</div>
-    <div style="font-size:16px;font-weight:700;margin-bottom:8px;">Obriši korisnika?</div>
-    <div id="confirm-name" style="font-size:13px;color:var(--muted);margin-bottom:20px;"></div>
+    <div style="font-size:34px;margin-bottom:12px;">🗑</div>
+    <div style="font-size:18px;font-weight:700;margin-bottom:8px;">Obriši korisnika?</div>
+    <div id="confirm-name" style="font-size:15px;color:var(--muted);margin-bottom:20px;"></div>
     <div style="display:flex;gap:10px;">
       <button class="btn btn-secondary" onclick="confirmCancel()" style="flex:1;justify-content:center;">Odustani</button>
       <button class="btn btn-danger" onclick="confirmOk()" style="flex:1;justify-content:center;">Obriši</button>
@@ -1041,7 +1041,7 @@ function renderDashboard() {
 
   const el = document.getElementById('last-entry-content');
   if (users.length === 0) {
-    el.innerHTML = '<span style="color:var(--muted);font-size:13px;">Nema unesenih korisnika</span>';
+    el.innerHTML = '<span style="color:var(--muted);font-size:15px;">Nema unesenih korisnika</span>';
   } else {
     const u = users[0];
     const initials = u.name.split(' ').map(x=>x[0]).join('').substring(0,2).toUpperCase();
@@ -1100,9 +1100,9 @@ function renderTable(q) {
     tbody.innerHTML = slice.map((u, i) => {
       const num = (currentPage-1)*perPage + i + 1;
       return `<tr>
-        <td style="color:var(--muted);font-family:var(--mono);font-size:12px;">${num}</td>
+        <td style="color:var(--muted);font-family:var(--mono);font-size:14px;">${num}</td>
         <td><strong>${u.name}</strong></td>
-        <td style="font-family:var(--mono);font-size:12px;">${u.contact || '—'}</td>
+        <td style="font-family:var(--mono);font-size:14px;">${u.contact || '—'}</td>
         <td>${u.laptop || '—'}</td>
         <td>
           <div style="display:flex;flex-direction:column;gap:4px;">
@@ -1116,11 +1116,11 @@ function renderTable(q) {
             ${u.officeKey ? `<span class="key-display" title="${u.officeKey}" onclick="copyKey('${u.officeKey}')">${maskKey(u.officeKey)}</span>` : ''}
           </div>
         </td>
-        <td style="font-family:var(--mono);font-size:11px;color:var(--muted);">${formatDate(u.date)}</td>
+        <td style="font-family:var(--mono);font-size:13px;color:var(--muted);">${formatDate(u.date)}</td>
         <td>
           <div style="display:flex;gap:5px;">
             <button class="btn btn-secondary btn-sm" onclick="viewUser('${u.id}')">👁</button>
-            <button class="btn btn-secondary btn-sm" onclick="exportPDF('${u.id}')" title="Export PDF" style="font-size:11px;letter-spacing:0.3px;">PDF</button>
+            <button class="btn btn-secondary btn-sm" onclick="exportPDF('${u.id}')" title="Export PDF" style="font-size:13px;letter-spacing:0.3px;">PDF</button>
             <button class="btn btn-secondary btn-sm" onclick="editUser('${u.id}')">✏</button>
             <button class="btn btn-danger btn-sm" onclick="deleteUser('${u.id}')">✕</button>
           </div>
@@ -1152,7 +1152,7 @@ function renderTable(q) {
         ${u.winKey ? `<div style="margin-bottom:6px;"><span class="key-display" style="max-width:100%;" onclick="copyKey('${u.winKey}')">${maskKey(u.winKey)} — kopiraj</span></div>` : ''}
         <div class="ucm-actions">
           <button class="btn btn-secondary btn-sm" onclick="viewUser('${u.id}')" style="flex:1;justify-content:center;">👁 Detalji</button>
-          <button class="btn btn-secondary btn-sm" onclick="exportPDF('${u.id}')" style="font-size:11px;letter-spacing:0.3px;">↓ PDF</button>
+          <button class="btn btn-secondary btn-sm" onclick="exportPDF('${u.id}')" style="font-size:13px;letter-spacing:0.3px;">↓ PDF</button>
           <button class="btn btn-secondary btn-sm" onclick="editUser('${u.id}')" style="flex:1;justify-content:center;">✏ Uredi</button>
           <button class="btn btn-danger btn-sm" onclick="deleteUser('${u.id}')">✕</button>
         </div>
@@ -1186,7 +1186,7 @@ function viewUser(id) {
       <div class="last-entry-avatar">${initials}</div>
       <div>
         <div>${u.name}</div>
-        <div style="font-size:12px;color:var(--muted);font-weight:400;font-family:var(--mono);margin-top:2px;">${timeAgo(u.date)}</div>
+        <div style="font-size:14px;color:var(--muted);font-weight:400;font-family:var(--mono);margin-top:2px;">${timeAgo(u.date)}</div>
       </div>
     </div>`;
 
@@ -1195,11 +1195,11 @@ function viewUser(id) {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
         <div>
           <div class="form-label" style="margin-bottom:5px;">Kontakt</div>
-          <div style="font-family:var(--mono);font-size:13px;">${u.contact || '—'}</div>
+          <div style="font-family:var(--mono);font-size:15px;">${u.contact || '—'}</div>
         </div>
         <div>
           <div class="form-label" style="margin-bottom:5px;">Laptop</div>
-          <div style="font-size:13px;">${u.laptop || '—'}</div>
+          <div style="font-size:15px;">${u.laptop || '—'}</div>
         </div>
       </div>
       <div>
@@ -1212,8 +1212,8 @@ function viewUser(id) {
         ${officeBadge(u.officeVer)}
         ${u.officeKey ? `<div style="margin-top:8px;"><span class="key-display" style="max-width:none;width:100%;" onclick="copyKey('${u.officeKey}')">${u.officeKey} &nbsp;— tap za kopiraj</span></div>` : ''}
       </div>
-      ${u.note ? `<div><div class="form-label" style="margin-bottom:5px;">Napomena</div><div style="font-size:13px;color:var(--muted);line-height:1.5;">${u.note}</div></div>` : ''}
-      <div style="font-size:11px;color:var(--muted);font-family:var(--mono);padding-top:10px;border-top:1px solid var(--border);">
+      ${u.note ? `<div><div class="form-label" style="margin-bottom:5px;">Napomena</div><div style="font-size:15px;color:var(--muted);line-height:1.5;">${u.note}</div></div>` : ''}
+      <div style="font-size:13px;color:var(--muted);font-family:var(--mono);padding-top:10px;border-top:1px solid var(--border);">
         Unesen: ${formatDate(u.date)}
       </div>
     </div>`;
@@ -1259,11 +1259,11 @@ function exportPDF(id) {
         <div style="flex-shrink:0;margin-top:2px;">${logoSVG}</div>
         <div>
           <div style="font-size:22px;font-weight:700;color:#333;line-height:1.1;">${title}</div>
-          ${edition ? `<div style="font-size:13px;color:#888;margin-top:2px;">${edition}</div>` : ''}
+          ${edition ? `<div style="font-size:15px;color:#888;margin-top:2px;">${edition}</div>` : ''}
         </div>
       </div>
       <div style="background:#F5F5F5;border:1px solid #DDD;border-radius:6px;padding:10px 14px;margin-top:8px;text-align:center;">
-        <span style="font-family:'Courier New',monospace;font-size:14px;color:#222;letter-spacing:0.5px;">${key || ''}</span>
+        <span style="font-family:'Courier New',monospace;font-size:16px;color:#222;letter-spacing:0.5px;">${key || ''}</span>
       </div>`;
   }
 
