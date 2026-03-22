@@ -381,6 +381,34 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 .pwa-btn { background: var(--accent); color: #000; border: none; border-radius: 8px; padding: 8px 14px; font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; }
 .pwa-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; padding: 4px; margin-left: 4px; }
 
+/* ====== PULL TO REFRESH ====== */
+.ptr-indicator {
+  display: none;
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 56px);
+  left: 50%; transform: translateX(-50%);
+  z-index: 190;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--muted);
+  gap: 6px;
+  align-items: center;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.ptr-indicator.visible { display: flex; }
+.ptr-spinner {
+  width: 14px; height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
 /* ====== MOBILE HEADER BAR ====== */
 .mobile-header {
   display: none;
@@ -581,13 +609,14 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 <!-- MOBILE HEADER BAR -->
 <header class="mobile-header">
   <div class="mobile-logo" onclick="showPage('dashboard')">
-    <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-      <rect width="28" height="28" rx="7" fill="#0d0f14"/>
-      <rect x="3" y="3" width="10" height="10" rx="2.5" fill="#00d4ff"/>
-      <rect x="15" y="3" width="10" height="10" rx="2.5" fill="#00d4ff" opacity=".65"/>
-      <rect x="3" y="15" width="10" height="10" rx="2.5" fill="#00d4ff" opacity=".65"/>
-      <rect x="15" y="15" width="10" height="10" rx="2.5" fill="#00d4ff"/>
-    </svg>
+    <div style="width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="8.5" height="8.5" rx="1.5" fill="#000" opacity=".85"/>
+        <rect x="11.5" y="0" width="8.5" height="8.5" rx="1.5" fill="#000" opacity=".55"/>
+        <rect x="0" y="11.5" width="8.5" height="8.5" rx="1.5" fill="#000" opacity=".55"/>
+        <rect x="11.5" y="11.5" width="8.5" height="8.5" rx="1.5" fill="#000" opacity=".85"/>
+      </svg>
+    </div>
     <span class="mobile-logo-title">WinBase</span>
   </div>
   <button class="hamburger-btn" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Izbornik">
@@ -596,6 +625,12 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     <span class="ham-line"></span>
   </button>
 </header>
+
+<!-- PULL TO REFRESH INDICATOR -->
+<div class="ptr-indicator" id="ptr-indicator">
+  <div class="ptr-spinner"></div>
+  <span id="ptr-text">Povuci za osvježavanje</span>
+</div>
 
 <!-- DRAWER OVERLAY -->
 <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
@@ -1848,6 +1883,61 @@ async function ghAutoSyncIfEnabled() {
     if (updated.owner) await ghPush(true);
   }
 }
+
+// ============ PULL TO REFRESH ============
+(function() {
+  let startY = 0, pulling = false, triggered = false;
+  const THRESHOLD = 70;
+
+  function isMobile() { return window.innerWidth <= 768; }
+
+  document.addEventListener('touchstart', e => {
+    if (!isMobile()) return;
+    if (window.scrollY > 0) return; // samo kad je na vrhu
+    startY = e.touches[0].clientY;
+    pulling = true;
+    triggered = false;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', e => {
+    if (!pulling || !isMobile()) return;
+    const dy = e.touches[0].clientY - startY;
+    if (dy <= 0) return;
+
+    const indicator = document.getElementById('ptr-indicator');
+    const ptrText   = document.getElementById('ptr-text');
+    if (!indicator) return;
+
+    if (dy > 15) {
+      indicator.classList.add('visible');
+      if (dy > THRESHOLD) {
+        ptrText.textContent = '↑ Pusti za osvježavanje';
+        triggered = true;
+      } else {
+        ptrText.textContent = '↓ Povuci za osvježavanje';
+        triggered = false;
+      }
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', async () => {
+    if (!pulling || !isMobile()) return;
+    pulling = false;
+    const indicator = document.getElementById('ptr-indicator');
+    const ptrText   = document.getElementById('ptr-text');
+
+    if (triggered && indicator) {
+      ptrText.textContent = 'Osvježavanje...';
+      // Dohvati podatke s GitHuba
+      await loadFromGitHub();
+      indicator.classList.remove('visible');
+      showToast('✓ Osvježeno');
+    } else if (indicator) {
+      indicator.classList.remove('visible');
+    }
+    triggered = false;
+  });
+})();
 
 // ============ INIT ============
 (function() {
