@@ -250,7 +250,7 @@ body {
 }
 .search-input:focus { border-color: var(--accent); }
 
-table { width: 100%; border-collapse: collapse; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 thead { background: var(--bg); }
 th { padding: 11px 14px; text-align: left; font-size: 13px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; white-space: nowrap; }
 td { padding: 13px 14px; font-size: 15px; border-top: 1px solid var(--border); vertical-align: middle; }
@@ -274,7 +274,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   font-family: var(--mono); font-size: 13px; color: var(--muted);
   background: var(--bg); padding: 4px 8px; border-radius: 4px;
   border: 1px solid var(--border); cursor: pointer;
-  transition: all 0.18s; max-width: 160px;
+  transition: all 0.18s; max-width: 220px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   display: block; text-align: center;
 }
@@ -795,8 +795,8 @@ tr:hover td { background: rgba(255,255,255,0.02); }
         <table>
           <thead>
             <tr>
-              <th>#</th><th>Ime i Prezime</th><th>Kontakt</th><th>Laptop</th>
-              <th>Windows</th><th>Office</th><th>Datum</th><th>Akcije</th>
+              <th style="width:40px;">#</th><th style="width:180px;">Ime i Prezime</th><th style="width:140px;">Kontakt</th><th style="width:160px;">Laptop</th>
+              <th style="width:220px;min-width:220px;">Windows</th><th style="width:220px;min-width:220px;">Office</th><th style="width:110px;">Datum</th><th style="width:160px;">Akcije</th>
             </tr>
           </thead>
           <tbody id="users-tbody"><tr><td colspan="8" class="no-data">Nema korisnika</td></tr></tbody>
@@ -1291,24 +1291,24 @@ function renderTable(q) {
     tbody.innerHTML = slice.map((u, i) => {
       const num = (currentPage-1)*perPage + i + 1;
       return `<tr>
-        <td style="color:var(--muted);font-family:var(--mono);font-size:14px;">${num}</td>
-        <td><strong>${u.name}</strong></td>
-        <td style="font-family:var(--mono);font-size:14px;">${u.contact || '—'}</td>
-        <td>${u.laptop || '—'}</td>
-        <td style="width:160px;">
-          <div style="display:flex;flex-direction:column;gap:5px;width:160px;">
+        <td style="width:40px;color:var(--muted);font-family:var(--mono);font-size:14px;">${num}</td>
+        <td style="width:180px;"><strong>${u.name}</strong></td>
+        <td style="width:140px;font-family:var(--mono);font-size:14px;">${u.contact || '—'}</td>
+        <td style="width:160px;">${u.laptop || '—'}</td>
+        <td style="width:220px;">
+          <div style="display:flex;flex-direction:column;gap:5px;width:220px;">
             <div style="width:100%;">${winBadge(u.winVer)}</div>
             ${u.winKey ? `<span class="key-display" style="width:100%;max-width:100%;" title="${u.winKey}" onclick="copyKey('${u.winKey}')">${maskKey(u.winKey)}</span>` : ''}
           </div>
         </td>
-        <td style="width:160px;">
-          <div style="display:flex;flex-direction:column;gap:5px;width:160px;">
+        <td style="width:220px;">
+          <div style="display:flex;flex-direction:column;gap:5px;width:220px;">
             <div style="width:100%;">${officeBadge(u.officeVer)}</div>
             ${u.officeKey ? `<span class="key-display" style="width:100%;max-width:100%;" title="${u.officeKey}" onclick="copyKey('${u.officeKey}')">${maskKey(u.officeKey)}</span>` : ''}
           </div>
         </td>
-        <td style="font-family:var(--mono);font-size:13px;color:var(--muted);">${formatDate(u.date)}</td>
-        <td>
+        <td style="width:110px;font-family:var(--mono);font-size:13px;color:var(--muted);">${formatDate(u.date)}</td>
+        <td style="width:160px;">
           <div style="display:flex;gap:5px;">
             <button class="btn btn-secondary btn-sm" onclick="viewUser('${u.id}')">👁</button>
             <button class="btn btn-secondary btn-sm" onclick="exportPDF('${u.id}')" title="Export PDF" style="font-size:13px;letter-spacing:0.3px;">PDF</button>
@@ -1340,16 +1340,6 @@ function renderTable(q) {
           ${winBadge(u.winVer)}
           ${officeBadge(u.officeVer)}
         </div>
-        ${u.winKey ? `
-        <div style="margin-bottom:8px;">
-          <div style="font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Windows ključ</div>
-          <span class="key-display" style="max-width:100%;width:100%;display:block;padding:8px 10px;font-size:13px;" onclick="copyKey('${u.winKey}')">${u.winKey}</span>
-        </div>` : ''}
-        ${u.officeKey ? `
-        <div style="margin-bottom:8px;">
-          <div style="font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Office ključ</div>
-          <span class="key-display" style="max-width:100%;width:100%;display:block;padding:8px 10px;font-size:13px;" onclick="copyKey('${u.officeKey}')">${u.officeKey}</span>
-        </div>` : ''}
         <div class="ucm-actions">
           <button class="btn btn-secondary btn-sm" onclick="viewUser('${u.id}')" style="flex:1;justify-content:center;">👁 Detalji</button>
           <button class="btn btn-secondary btn-sm" onclick="exportPDF('${u.id}')" style="font-size:13px;letter-spacing:0.3px;">↓ PDF</button>
@@ -1983,8 +1973,11 @@ async function loadFromGitHub() {
 
     if (resp.ok) {
       const data = await resp.json();
-      // GitHub vraća base64 content
-      const decoded = JSON.parse(atob(data.content.replace(/\n/g, '')));
+      // GitHub vraća base64 content — koristimo TextDecoder za ispravni UTF-8
+      const binary = atob(data.content.replace(/\n/g, ''));
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      const decoded = JSON.parse(new TextDecoder('utf-8').decode(bytes));
       const ghUsers = decoded.korisnici || [];
 
       if (ghUsers.length > 0) {
