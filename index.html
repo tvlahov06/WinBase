@@ -381,38 +381,93 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 .pwa-btn { background: var(--accent); color: #000; border: none; border-radius: 8px; padding: 8px 14px; font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; }
 .pwa-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; padding: 4px; margin-left: 4px; }
 
-/* ====== BOTTOM NAV (mobile) ====== */
-.bottom-nav {
+/* ====== HAMBURGER / DRAWER (mobile) ====== */
+.hamburger-btn {
   display: none;
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: var(--surface); border-top: 1px solid var(--border);
-  height: var(--nav-h); z-index: 100;
-  padding: 0 4px;
-  padding-bottom: env(safe-area-inset-bottom);
+  position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: 16px;
+  z-index: 300;
+  width: 44px; height: 44px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; cursor: pointer;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 5px;
+  transition: background 0.2s;
 }
-.bottom-nav-inner { display: flex; height: 100%; }
-.bnav-item {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 3px;
-  cursor: pointer; transition: all 0.2s; border-radius: 10px;
-  padding: 6px 4px; margin: 6px 2px;
-  color: var(--muted); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.3px;
+.hamburger-btn:active { background: var(--surface2); }
+.ham-line {
+  width: 20px; height: 2px;
+  background: var(--text); border-radius: 2px;
+  transition: all 0.25s;
 }
-.bnav-item:active { transform: scale(0.92); }
-.bnav-item.active { color: var(--accent); background: rgba(0,212,255,0.08); }
-.bnav-icon { font-size: 22px; }
-.bnav-save {
-  background: var(--accent); color: #000 !important;
-  border-radius: 12px; margin: 8px 4px;
+/* Animated X when open */
+.hamburger-btn.open .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger-btn.open .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Overlay */
+.drawer-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 250;
+  opacity: 0;
+  transition: opacity 0.25s;
 }
-.bnav-save.active { background: var(--accent); color: #000 !important; }
+.drawer-overlay.open { display: block; opacity: 1; }
+
+/* Drawer */
+.drawer {
+  position: fixed; top: 0; right: -280px; bottom: 0;
+  width: 280px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  z-index: 260;
+  transition: right 0.28s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 60px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+}
+.drawer.open { right: 0; }
+
+.drawer-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.drawer-logo-title { font-family: var(--mono); font-size: 17px; font-weight: 700; color: var(--accent); }
+.drawer-logo-sub { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+
+.drawer-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 20px;
+  color: var(--muted); font-size: 16px; font-weight: 500;
+  cursor: pointer; transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+.drawer-item:active { background: var(--surface2); }
+.drawer-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(0,212,255,0.06); font-weight: 600; }
+.drawer-icon { font-size: 20px; width: 24px; text-align: center; }
+
+.drawer-bottom {
+  margin-top: auto;
+  padding: 16px 20px 0;
+  border-top: 1px solid var(--border);
+}
+.drawer-theme-btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-radius: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  cursor: pointer; font-family: var(--sans); font-size: 15px;
+  color: var(--text); font-weight: 500;
+}
+.drawer-theme-btn:active { background: var(--border); }
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   .sidebar { display: none; }
-  .main { margin-left: 0; padding: 16px 14px; padding-top: calc(env(safe-area-inset-top, 0px) + 16px); padding-bottom: calc(var(--nav-h) + 16px + env(safe-area-inset-bottom)); }
-  .bottom-nav { display: flex; }
+  .main { margin-left: 0; padding: 16px 14px; padding-top: calc(env(safe-area-inset-top, 0px) + 68px); padding-bottom: 20px; }
+  .hamburger-btn { display: flex; }
   .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .stat-card { padding: 14px; }
   .stat-value { font-size: 26px; }
@@ -430,7 +485,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   .table-actions { width: 100%; }
   .modal { border-radius: 20px 20px 0 0; padding: 20px 16px; }
   .io-card { padding: 16px; }
-  .toast { bottom: calc(var(--nav-h) + 10px); }
+  .toast { bottom: 20px; }
   .last-entry-time { display: none; }
   .form-actions { gap: 8px; }
   .form-actions .btn { flex: 1; justify-content: center; }
@@ -499,26 +554,52 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   </div>
 </nav>
 
-<!-- BOTTOM NAV (mobile) -->
-<nav class="bottom-nav">
-  <div class="bottom-nav-inner">
-    <div class="bnav-item active" id="bnav-dashboard" onclick="showPage('dashboard')">
-      <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:1px;"><rect x="1" y="1" width="8.5" height="8.5" rx="2" fill="currentColor"/><rect x="12.5" y="1" width="8.5" height="8.5" rx="2" fill="currentColor" opacity=".6"/><rect x="1" y="12.5" width="8.5" height="8.5" rx="2" fill="currentColor" opacity=".6"/><rect x="12.5" y="12.5" width="8.5" height="8.5" rx="2" fill="currentColor"/></svg>
-      <span>Pregled</span>
+<!-- HAMBURGER BUTTON (mobile) -->
+<button class="hamburger-btn" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Izbornik">
+  <span class="ham-line"></span>
+  <span class="ham-line"></span>
+  <span class="ham-line"></span>
+</button>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- DRAWER -->
+<nav class="drawer" id="drawer">
+  <div class="drawer-logo">
+    <svg width="26" height="26" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+      <rect width="28" height="28" rx="7" fill="#0d0f14"/>
+      <rect x="3" y="3" width="10" height="10" rx="2.5" fill="#00d4ff"/>
+      <rect x="15" y="3" width="10" height="10" rx="2.5" fill="#00d4ff" opacity=".65"/>
+      <rect x="3" y="15" width="10" height="10" rx="2.5" fill="#00d4ff" opacity=".65"/>
+      <rect x="15" y="15" width="10" height="10" rx="2.5" fill="#00d4ff"/>
+    </svg>
+    <div>
+      <div class="drawer-logo-title">WinBase</div>
+      <div class="drawer-logo-sub">Admin Panel</div>
     </div>
-    <div class="bnav-item" id="bnav-add" onclick="showPage('add')">
-      <span class="bnav-icon">＋</span><span>Dodaj</span>
-    </div>
-    <div class="bnav-item" id="bnav-list" onclick="showPage('list')">
-      <span class="bnav-icon">≡</span><span>Lista</span>
-    </div>
-    <div class="bnav-item" id="bnav-github" onclick="showPage('github')">
-      <span class="bnav-icon">⬡</span><span>GitHub</span>
-    </div>
-    <div class="bnav-item" onclick="toggleTheme()" id="bnav-theme">
-      <span class="bnav-icon" id="theme-icon-mobile">☀</span>
-      <span id="theme-label-mobile">Tema</span>
-    </div>
+  </div>
+
+  <div class="drawer-item active" id="dnav-dashboard" onclick="showPage('dashboard');closeDrawer()">
+    <span class="drawer-icon">◈</span><span>Dashboard</span>
+  </div>
+  <div class="drawer-item" id="dnav-add" onclick="showPage('add');closeDrawer()">
+    <span class="drawer-icon">＋</span><span>Novi Korisnik</span>
+  </div>
+  <div class="drawer-item" id="dnav-list" onclick="showPage('list');closeDrawer()">
+    <span class="drawer-icon">≡</span><span>Lista Korisnika</span>
+  </div>
+  <div class="drawer-item" id="dnav-github" onclick="showPage('github');closeDrawer()">
+    <span class="drawer-icon">⬡</span>
+    <span>GitHub Sync</span>
+    <span id="gh-status-dot-drawer" style="margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--muted);flex-shrink:0;"></span>
+  </div>
+
+  <div class="drawer-bottom">
+    <button class="drawer-theme-btn" onclick="toggleTheme()">
+      <span id="theme-label-mobile">🌙 Tamni način</span>
+      <span id="theme-icon-mobile" style="font-size:20px;">☀</span>
+    </button>
   </div>
 </nav>
 
@@ -777,7 +858,16 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 
 <script>
 // ============ DATA ============
-let users = JSON.parse(localStorage.getItem('winbase_users') || '[]');
+let users = (function() {
+  try {
+    const raw = localStorage.getItem('winbase_users');
+    if (!raw) return [];
+    return JSON.parse(raw);
+  } catch(e) {
+    console.warn('localStorage parse error:', e);
+    return [];
+  }
+})();
 let editingId = null;
 
 // ============ PWA SETUP ============
@@ -850,15 +940,20 @@ const pages = ['dashboard', 'add', 'list', 'github'];
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelectorAll('.bnav-item').forEach(n => n.classList.remove('active'));
+  // Drawer items
+  document.querySelectorAll('.drawer-item').forEach(n => n.classList.remove('active'));
 
   document.getElementById('page-' + name).classList.add('active');
 
+  // Desktop sidebar
   const idx = pages.indexOf(name);
   if (idx >= 0) {
     document.querySelectorAll('.nav-item')[idx]?.classList.add('active');
-    document.getElementById('bnav-' + name)?.classList.add('active');
   }
+
+  // Drawer
+  const drawerItem = document.getElementById('dnav-' + name);
+  if (drawerItem) drawerItem.classList.add('active');
 
   if (name === 'dashboard') renderDashboard();
   if (name === 'list') { currentPage = 1; renderTable(); }
@@ -873,6 +968,29 @@ function showPage(name) {
   }
 
   window.scrollTo(0, 0);
+}
+
+// ============ HAMBURGER DRAWER ============
+function toggleDrawer() {
+  const btn     = document.getElementById('hamburger-btn');
+  const drawer  = document.getElementById('drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const isOpen  = drawer.classList.contains('open');
+  if (isOpen) {
+    closeDrawer();
+  } else {
+    btn.classList.add('open');
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeDrawer() {
+  document.getElementById('hamburger-btn')?.classList.remove('open');
+  document.getElementById('drawer')?.classList.remove('open');
+  document.getElementById('drawer-overlay')?.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 // ============ FORMAT KEY ============
@@ -1544,7 +1662,8 @@ function ghFillForm() {
 }
 
 function ghUpdateStatusUI(state, msg) {
-  const dot   = document.getElementById('gh-status-dot');
+  const dot       = document.getElementById('gh-status-dot');
+  const dotDrawer = document.getElementById('gh-status-dot-drawer');
   const icon  = document.getElementById('gh-status-icon');
   const title = document.getElementById('gh-status-title');
   const sub   = document.getElementById('gh-status-sub');
@@ -1559,7 +1678,8 @@ function ghUpdateStatusUI(state, msg) {
     pushed:       { dot:'#10b981', icon:'✅', t:'Push uspješan', s: msg||'Podaci su na GitHubu',          border:'rgba(16,185,129,0.3)' },
   };
   const st = states[state] || states.disconnected;
-  if (dot)   dot.style.background = st.dot;
+  if (dot)       dot.style.background = st.dot;
+  if (dotDrawer) dotDrawer.style.background = st.dot;
   if (icon)  icon.textContent = st.icon;
   if (title) title.textContent = st.t;
   if (sub)   sub.textContent = st.s;
@@ -1695,10 +1815,12 @@ async function ghAutoSyncIfEnabled() {
 
 // ============ INIT ============
 (function() {
-  // Postavi GitHub status dot odmah pri učitavanju
   const s = ghLoadSettings();
+  const color = s.token ? '#10b981' : '#64748b';
   const dot = document.getElementById('gh-status-dot');
-  if (dot) dot.style.background = s.token ? '#10b981' : '#64748b';
+  const dotD = document.getElementById('gh-status-dot-drawer');
+  if (dot) dot.style.background = color;
+  if (dotD) dotD.style.background = color;
 })();
 
 // Učitaj podatke s GitHuba pri pokretanju (ako je GitHub konfiguriran)
