@@ -1,7 +1,7 @@
 {
   "meta": {
     "verzija": "1.0",
-    "zadnji_update": "2026-03-23T22:04:06.553Z",
+    "zadnji_update": "2026-03-23T22:12:36.019Z",
     "ukupno": 3
   },
   "korisnici": [
@@ -12,11 +12,11 @@
       "laptop": "Lenovo IdeaPad 3 17”",
       "winVer": "Windows 11 Pro",
       "winKey": "T89N2-6Q93R-PV4H9-8V9P8-W44C6",
-      "officeVer": "",
-      "officeKey": "",
+      "officeVer": "Office 2021 Professional",
+      "officeKey": "PFNTT-FRRCQ-J3YT6-GPXM3-CBCB9",
       "note": "",
-      "date": "2026-03-23T22:04:06.552Z",
-      "updated": "2026-03-23T22:04:06.552Z"
+      "date": "2026-03-23T00:00:00.000Z",
+      "updated": "2026-03-23T22:12:36.017Z"
     },
     {
       "id": "1774300381172",
