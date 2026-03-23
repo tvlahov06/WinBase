@@ -1,8 +1,8 @@
 {
   "meta": {
     "verzija": "1.0",
-    "zadnji_update": "2026-03-23T22:12:36.019Z",
-    "ukupno": 3
+    "zadnji_update": "2026-03-23T23:27:17.701Z",
+    "ukupno": 2
   },
   "korisnici": [
     {
@@ -30,19 +30,6 @@
       "note": "",
       "date": "2026-03-23T00:00:00.000Z",
       "updated": "2026-03-23T21:49:01.193Z"
-    },
-    {
-      "id": "1774218355677",
-      "name": "Tomislav Vlahović",
-      "contact": "0915763877",
-      "laptop": "Lenovo LOQ",
-      "winVer": "Windows 11 Home",
-      "winKey": "DJVDV-FHDFV-FBJFO-SHVSH-LVLKF",
-      "officeVer": "Office 2021 Professional",
-      "officeKey": "FJBAL-IBLIB-VIFVB-AILAB-VUIRG",
-      "note": "",
-      "date": "2026-03-22T00:00:00.000Z",
-      "updated": "2026-03-22T23:56:22.595Z"
     }
   ]
 }
