@@ -1,10 +1,23 @@
 {
   "meta": {
     "verzija": "1.0",
-    "zadnji_update": "2026-03-22T23:56:22.597Z",
-    "ukupno": 1
+    "zadnji_update": "2026-03-23T21:13:01.173Z",
+    "ukupno": 2
   },
   "korisnici": [
+    {
+      "id": "1774300381172",
+      "name": "Roguljić",
+      "contact": "",
+      "laptop": "Lenovo IdeaPad 1 82QD",
+      "winVer": "Windows 11 Pro",
+      "winKey": "C4D8C-PXNFQ-8X83H-3PGQ7-T3BP6",
+      "officeVer": "",
+      "officeKey": "",
+      "note": "",
+      "date": "2026-03-23T21:13:01.171Z",
+      "updated": "2026-03-23T21:13:01.172Z"
+    },
     {
       "id": "1774218355677",
       "name": "Tomislav Vlahović",
