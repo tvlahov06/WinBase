@@ -1,10 +1,23 @@
 {
   "meta": {
     "verzija": "1.0",
-    "zadnji_update": "2026-03-24T00:56:43.340Z",
-    "ukupno": 3
+    "zadnji_update": "2026-03-24T00:58:11.498Z",
+    "ukupno": 4
   },
   "korisnici": [
+    {
+      "id": "1774313891498",
+      "name": "Ana",
+      "contact": "0912707272",
+      "laptop": "Lenovo IdeaPad Flex 82XX00HJSC",
+      "winVer": "",
+      "winKey": "",
+      "officeVer": "",
+      "officeKey": "",
+      "note": "Racun 7269-03M-1",
+      "date": "2026-03-24T00:58:11.498Z",
+      "updated": "2026-03-24T00:58:11.498Z"
+    },
     {
       "id": "1774313285834",
       "name": "Tigar",
