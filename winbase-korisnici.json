@@ -1,22 +1,22 @@
 {
   "meta": {
     "verzija": "1.0",
-    "zadnji_update": "2026-03-24T00:48:05.836Z",
+    "zadnji_update": "2026-03-24T00:56:43.340Z",
     "ukupno": 3
   },
   "korisnici": [
     {
       "id": "1774313285834",
       "name": "Tigar",
-      "contact": "",
-      "laptop": "",
+      "contact": "0912707272",
+      "laptop": "HP Omnibook 5 CF8J8EA",
       "winVer": "",
       "winKey": "",
       "officeVer": "Office 2021 Professional",
       "officeKey": "WNJGJ-VVFTW-KWVJX-Q3HPQ-TCTWK",
-      "note": "",
-      "date": "2026-03-24T00:48:05.834Z",
-      "updated": "2026-03-24T00:48:05.834Z"
+      "note": "Račun 7268-03M-1",
+      "date": "2026-03-24T00:00:00.000Z",
+      "updated": "2026-03-24T00:56:43.339Z"
     },
     {
       "id": "1774303446552",
