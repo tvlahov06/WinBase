@@ -1,10 +1,23 @@
 {
   "meta": {
     "verzija": "1.0",
-    "zadnji_update": "2026-03-24T01:04:29.890Z",
-    "ukupno": 4
+    "zadnji_update": "2026-03-30T20:21:55.063Z",
+    "ukupno": 5
   },
   "korisnici": [
+    {
+      "id": "1774902115062",
+      "name": "Jakov Strizrep",
+      "contact": "0997695817",
+      "laptop": "Lenovo IdeaPad 3 82XQ00U1SC",
+      "winVer": "Windows 11 Home",
+      "winKey": "9BKNJ-XWKP3-73G2Y-MGQRD-BG9QR",
+      "officeVer": "Office 2021 Professional",
+      "officeKey": "P9KNY-DWJ7X-VHQM9-87M6F-QGRY",
+      "note": "",
+      "date": "2026-03-27T00:00:00.000Z",
+      "updated": "2026-03-30T20:21:55.062Z"
+    },
     {
       "id": "1774313891498",
       "name": "Ana",
