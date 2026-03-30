@@ -1,7 +1,7 @@
 {
   "meta": {
     "verzija": "1.0",
-    "zadnji_update": "2026-03-30T23:09:45.230Z",
+    "zadnji_update": "2026-03-30T23:12:05.576Z",
     "ukupno": 7
   },
   "korisnici": [
@@ -12,11 +12,11 @@
       "laptop": "HP 17-cp2040nm",
       "winVer": "Windows 10 Home",
       "winKey": "4VWPN-VVYF9-GFXTX-2FF94-JHVX4",
-      "officeVer": "",
-      "officeKey": "",
+      "officeVer": "Office 2021 Professional",
+      "officeKey": "8YJN6-FTQ3V-TQKWC-G6473-8MCB9",
       "note": "",
-      "date": "2026-03-30T23:09:45.228Z",
-      "updated": "2026-03-30T23:09:45.228Z"
+      "date": "2026-03-30T00:00:00.000Z",
+      "updated": "2026-03-30T23:12:05.575Z"
     },
     {
       "id": "1774902210335",
