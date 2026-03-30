@@ -1,10 +1,23 @@
 {
   "meta": {
     "verzija": "1.0",
-    "zadnji_update": "2026-03-30T21:10:45.306Z",
-    "ukupno": 6
+    "zadnji_update": "2026-03-30T23:09:45.230Z",
+    "ukupno": 7
   },
   "korisnici": [
+    {
+      "id": "1774912185228",
+      "name": "Meri Viljac",
+      "contact": "0914504008",
+      "laptop": "HP 17-cp2040nm",
+      "winVer": "Windows 10 Home",
+      "winKey": "4VWPN-VVYF9-GFXTX-2FF94-JHVX4",
+      "officeVer": "",
+      "officeKey": "",
+      "note": "",
+      "date": "2026-03-30T23:09:45.228Z",
+      "updated": "2026-03-30T23:09:45.228Z"
+    },
     {
       "id": "1774902210335",
       "name": "Luka Alebic",
